@@ -1,0 +1,34 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1759159379422,
+      "tag": "0000_schema_users",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1759159400020,
+      "tag": "0001_seed_users",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1759243990996,
+      "tag": "0002_schema_tickets",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1759244007879,
+      "tag": "0003_seed_tickets",
+      "breakpoints": true
+    }
+  ]
+}
