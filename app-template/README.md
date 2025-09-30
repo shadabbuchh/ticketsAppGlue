@@ -126,6 +126,28 @@ app-template/
 └── quick-start.sh  # Docker-based quick setup
 ```
 
+## 🎯 Important: API Route Architecture
+
+**This project uses OpenAPI-driven automatic route generation!**
+
+### How It Works:
+1. **All business API routes are defined in:** `openapi/openapi_spec.yaml`
+2. **Routes are automatically generated** at runtime by `fastify-openapi-glue`
+3. **No manual route files** for business endpoints (events, users, etc.)
+4. **Handler implementation:** `backend/src/handlers/open-api-service-handlers.ts`
+
+### Key Points:
+- ✅ **DO:** Define new endpoints in `openapi/openapi_spec.yaml`
+- ✅ **DO:** Implement handlers in `open-api-service-handlers.ts`
+- ❌ **DON'T:** Create route files in `backend/src/routes/` for business logic
+- ❌ **DON'T:** Manually define business endpoints in the backend
+
+### Benefits:
+- Single source of truth for API definition
+- Automatic request/response validation
+- Type-safe client and server code
+- Auto-generated documentation
+
 ## 🎯 Development Workflow
 
 1. **First time**: `./setup.sh`
@@ -133,5 +155,3 @@ app-template/
 3. **Access app**: http://localhost:8080
 4. **Make changes**: Files auto-reload in development
 5. **Stop**: `Ctrl+C`
-
-Happy coding! 🚀
