@@ -32,6 +32,41 @@ brew install caddy
 - PostgreSQL database
 - Caddy (optional, for localhost:8080 access)
 
+## 📁 Project Structure
+
+```
+app-template/
+├── backend/        # Fastify API server (port 3001)
+├── frontend/       # React/Vite app (port 5173)
+├── openapi/         # Shared types and schemas
+├── e2b/            # Caddy configuration
+├── setup.sh        # First-time setup script
+├── run.sh          # Main run script
+└── quick-start.sh  # Docker-based quick setup
+```
+
+## 🎯 Important: API Route Architecture
+
+**This project uses OpenAPI-driven automatic route generation!**
+
+### How It Works:
+1. **All business API routes are defined in:** `openapi/openapi_spec.yaml`
+2. **Routes are automatically generated** at runtime by `fastify-openapi-glue`
+3. **No manual route files** for business endpoints (events, users, etc.)
+4. **Handler implementation:** `backend/src/handlers/open-api-service-handlers.ts`
+
+### Key Points:
+- ✅ **DO:** Define new endpoints in `openapi/openapi_spec.yaml`
+- ✅ **DO:** Implement handlers in `open-api-service-handlers.ts`
+- ❌ **DON'T:** Create route files in `backend/src/routes/` for business logic
+- ❌ **DON'T:** Manually define business endpoints in the backend
+
+### Benefits:
+- Single source of truth for API definition
+- Automatic request/response validation
+- Type-safe client and server code
+- Auto-generated documentation
+
 ## ⚙️ Setup (First Time)
 
 ### Option 1: Quick Setup with Docker
@@ -113,18 +148,6 @@ lsof -ti:3001 | xargs kill # Kill process on port 3001
 lsof -ti:5173 | xargs kill # Kill process on port 5173
 ```
 
-## 📁 Project Structure
-
-```
-app-template/
-├── backend/        # Fastify API server (port 3001)
-├── frontend/       # React/Vite app (port 5173)
-├── openapi/         # Shared types and schemas
-├── e2b/            # Caddy configuration
-├── setup.sh        # First-time setup script
-├── run.sh          # Main run script
-└── quick-start.sh  # Docker-based quick setup
-```
 
 ## 🎯 Development Workflow
 
@@ -133,5 +156,3 @@ app-template/
 3. **Access app**: http://localhost:8080
 4. **Make changes**: Files auto-reload in development
 5. **Stop**: `Ctrl+C`
-
-Happy coding! 🚀
